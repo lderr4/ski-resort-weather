@@ -1,0 +1,77 @@
+version: '3'
+services:
+  
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  webserver:
+    image: apache/airflow:2.6.0-python3.9
+    container_name: webserver
+    depends_on:
+      - postgres
+    env_file: 
+      - .env
+
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
+      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+      - AIRFLOW__WEBSERVER__RBAC=true
+      - AIRFLOW__CORE__FERNET_KEY=fTQQOC7Z34lKtLimf73_tl7bqZ_bQ63gHRBoplSCVas=
+      - AIRFLOW__WEBSERVER__AUTHENTICATE=true
+      - AIRFLOW__WEBSERVER__AUTH_BACKENDS=airflow.www.auth.backend.default
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./requirements.txt:/opt/airflow/requirements.txt
+    ports:
+      - "8080:8080"
+    command: bash -c "pip install --no-cache-dir -r /opt/airflow/requirements.txt && airflow webserver"
+    healthcheck:
+      test: ['CMD-SHELL', "[ -f /opt/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+  scheduler:
+    image: apache/airflow:2.6.0-python3.9
+    container_name: scheduler
+    depends_on:
+      - postgres
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./requirements.txt:/opt/airflow/requirements.txt
+    env_file: 
+      - .env
+    environment:
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
+      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+    command: bash -c "
+      pip install --no-cache-dir -r /opt/airflow/requirements.txt &&
+      airflow db upgrade &&
+      airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com &&
+      airflow scheduler"
+
+  postgres-dev:
+    image: postgres:13
+    container_name: postgres-dev
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: admin
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "5433:5432"

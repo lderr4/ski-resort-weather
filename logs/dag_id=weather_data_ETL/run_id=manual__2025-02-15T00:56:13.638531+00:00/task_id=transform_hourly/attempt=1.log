@@ -1,0 +1,24 @@
+[2025-02-15T00:56:52.167+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_data_ETL.transform_hourly manual__2025-02-15T00:56:13.638531+00:00 [queued]>
+[2025-02-15T00:56:52.180+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_data_ETL.transform_hourly manual__2025-02-15T00:56:13.638531+00:00 [queued]>
+[2025-02-15T00:56:52.181+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-02-15T00:56:52.198+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): transform_hourly> on 2025-02-15 00:56:13.638531+00:00
+[2025-02-15T00:56:52.203+0000] {standard_task_runner.py:57} INFO - Started process 1743 to run task
+[2025-02-15T00:56:52.208+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'weather_data_ETL', 'transform_hourly', 'manual__2025-02-15T00:56:13.638531+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmpocaxslrw']
+[2025-02-15T00:56:52.210+0000] {standard_task_runner.py:85} INFO - Job 70: Subtask transform_hourly
+[2025-02-15T00:56:52.305+0000] {task_command.py:410} INFO - Running <TaskInstance: weather_data_ETL.transform_hourly manual__2025-02-15T00:56:13.638531+00:00 [running]> on host 2079ceed134c
+[2025-02-15T00:56:52.473+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airscholar' AIRFLOW_CTX_DAG_ID='weather_data_ETL' AIRFLOW_CTX_TASK_ID='transform_hourly' AIRFLOW_CTX_EXECUTION_DATE='2025-02-15T00:56:13.638531+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-15T00:56:13.638531+00:00'
+[2025-02-15T00:56:52.565+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/transform_weather.py", line 26, in transform_hourly_forecast
+    hf = get_hourly_forecast(response, foreign_key_map)
+  File "/opt/airflow/dags/transform_weather.py", line 78, in get_hourly_forecast
+    current_weather_id = foreign_key_map[location_id]
+KeyError: 1
+[2025-02-15T00:56:52.586+0000] {taskinstance.py:1368} INFO - Marking task as FAILED. dag_id=weather_data_ETL, task_id=transform_hourly, execution_date=20250215T005613, start_date=20250215T005652, end_date=20250215T005652
+[2025-02-15T00:56:52.607+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 70 for task transform_hourly (1; 1743)
+[2025-02-15T00:56:52.622+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-02-15T00:56:52.656+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

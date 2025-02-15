@@ -1,0 +1,24 @@
+[2025-02-15T00:56:56.522+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: weather_data_ETL.transform_daily manual__2025-02-15T00:56:13.638531+00:00 [queued]>
+[2025-02-15T00:56:56.536+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: weather_data_ETL.transform_daily manual__2025-02-15T00:56:13.638531+00:00 [queued]>
+[2025-02-15T00:56:56.537+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-02-15T00:56:56.553+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): transform_daily> on 2025-02-15 00:56:13.638531+00:00
+[2025-02-15T00:56:56.562+0000] {standard_task_runner.py:57} INFO - Started process 1749 to run task
+[2025-02-15T00:56:56.566+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'weather_data_ETL', 'transform_daily', 'manual__2025-02-15T00:56:13.638531+00:00', '--job-id', '71', '--raw', '--subdir', 'DAGS_FOLDER/weather_dag.py', '--cfg-path', '/tmp/tmp_gj0ya0d']
+[2025-02-15T00:56:56.569+0000] {standard_task_runner.py:85} INFO - Job 71: Subtask transform_daily
+[2025-02-15T00:56:56.660+0000] {task_command.py:410} INFO - Running <TaskInstance: weather_data_ETL.transform_daily manual__2025-02-15T00:56:13.638531+00:00 [running]> on host 2079ceed134c
+[2025-02-15T00:56:56.823+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airscholar' AIRFLOW_CTX_DAG_ID='weather_data_ETL' AIRFLOW_CTX_TASK_ID='transform_daily' AIRFLOW_CTX_EXECUTION_DATE='2025-02-15T00:56:13.638531+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-02-15T00:56:13.638531+00:00'
+[2025-02-15T00:56:56.920+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/transform_weather.py", line 43, in transform_daily_forecast
+    df = get_daily_forecast(response, foreign_key_map)
+  File "/opt/airflow/dags/transform_weather.py", line 100, in get_daily_forecast
+    current_weather_id = foreign_key_map[location_id]
+KeyError: 1
+[2025-02-15T00:56:56.945+0000] {taskinstance.py:1368} INFO - Marking task as FAILED. dag_id=weather_data_ETL, task_id=transform_daily, execution_date=20250215T005613, start_date=20250215T005656, end_date=20250215T005656
+[2025-02-15T00:56:56.966+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 71 for task transform_daily (1; 1749)
+[2025-02-15T00:56:56.980+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-02-15T00:56:57.019+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
