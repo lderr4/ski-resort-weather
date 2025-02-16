@@ -16,7 +16,6 @@ CREATE TABLE IF NOT EXISTS location(
 CREATE TABLE IF NOT EXISTS current_weather(
     id SERIAL PRIMARY KEY,
     location_id INT,
-    current_weather_id INT,
     dt TIMESTAMP,
     temp DOUBLE PRECISION,
     feels_like DOUBLE PRECISION,
@@ -31,7 +30,6 @@ CREATE TABLE IF NOT EXISTS current_weather(
     snow_1h DOUBLE PRECISION,
     main VARCHAR(50),
     "description" TEXT,
-    FOREIGN KEY (current_weather_id) REFERENCES current_weather(id),
     FOREIGN KEY (location_id) REFERENCES location(id)
 );
 

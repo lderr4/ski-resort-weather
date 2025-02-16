@@ -11,11 +11,10 @@ default_args = {
     'start_date': datetime(2025, 2, 3, 5, 26)
 }
 
-
 with DAG(
     'weather_data_ETL',
     default_args=default_args,
-    schedule_interval='@daily',
+    schedule_interval='@hourly',
     catchup=False
 ) as dag:
     load_location_map = PythonOperator(
