@@ -1,11 +1,14 @@
 up:
 	docker compose up -d
 
-build:
+build-dev:
 	docker compose up --build -d
 
 down:
 	docker compose down
+
+build-prod:
+	docker compose up webserver scheduler metabase --build -d
 
 
 check-dev-db:
