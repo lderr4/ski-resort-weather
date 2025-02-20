@@ -1,4 +1,4 @@
-from constants import alerts_cols, daily_forecast_cols, current_weather_cols, hourly_forecast_cols
+from weather_etl.constants import alerts_cols, daily_forecast_cols, current_weather_cols, hourly_forecast_cols
 import pandas as pd
 from typing import Dict, List
 
@@ -45,8 +45,6 @@ def transform_daily_forecast(**kwargs):
     
     kwargs['ti'].xcom_push(key="daily_forecast_list", value=daily_forecast)
 
-
-
 def transform_alerts(**kwargs):
     responses = kwargs['ti'].xcom_pull(task_ids="load_weather", key="responses")
     alerts = []
@@ -56,10 +54,6 @@ def transform_alerts(**kwargs):
         alerts.extend(alert)
 
     kwargs['ti'].xcom_push(key="alerts_list", value=alerts)
-
-
-
-
 
 def get_current_weather(response: Dict) -> Dict: 
     current = response["current"]
