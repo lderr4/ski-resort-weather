@@ -8,7 +8,7 @@ down:
 	docker compose down
 
 build-prod:
-	docker compose up webserver scheduler metabase --build -d
+	docker compose up --build webserver scheduler metabase  -d
 
 
 check-dev-db:
