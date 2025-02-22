@@ -4,23 +4,25 @@ services:
   postgres:
     image: postgres:13
     container_name: postgres
+    user: "${UID:-1000}:0"
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   webserver:
     image: apache/airflow:2.6.0-python3.9
     container_name: webserver
+    user: "${UID:-1000}:0"
     depends_on:
       - postgres
+      - scheduler
     env_file: 
       - .env
-
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
@@ -36,8 +38,8 @@ services:
       - AIRFLOW__WEBSERVER__AUTHENTICATE=true
       - AIRFLOW__WEBSERVER__AUTH_BACKENDS=airflow.www.auth.backend.default
     volumes:
-      - dags:/opt/airflow/dags
-      - logs:/opt/airflow/logs
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
       - ./requirements.txt:/opt/airflow/requirements.txt
     ports:
       - "8080:8080"
@@ -51,11 +53,12 @@ services:
   scheduler:
     image: apache/airflow:2.6.0-python3.9
     container_name: scheduler
+    user: "${UID:-1000}:0"
     depends_on:
       - postgres
     volumes:
-      - dags:/opt/airflow/dags
-      - logs:/opt/airflow/logs
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
       - ./requirements.txt:/opt/airflow/requirements.txt
     env_file: 
       - .env
@@ -111,10 +114,5 @@ services:
       timeout: 5s
       retries: 5
 
-
-volumes:
-  pgdata:
-  dags:
-  logs:
 
 

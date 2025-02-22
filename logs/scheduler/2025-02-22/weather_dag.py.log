@@ -1,0 +1,111 @@
+[2025-02-22T21:44:55.809+0000] {processor.py:156} INFO - Started process (PID=25) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:44:55.822+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:44:55.822+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:44:55.822+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:44:56.339+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:44:56.338+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:44:56.339+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:44:56.355+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.548 seconds
+[2025-02-22T21:45:26.478+0000] {processor.py:156} INFO - Started process (PID=27) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:45:26.479+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:45:26.480+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:45:26.480+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:45:26.991+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:45:26.989+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:45:26.991+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:45:27.009+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.534 seconds
+[2025-02-22T21:45:57.115+0000] {processor.py:156} INFO - Started process (PID=29) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:45:57.116+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:45:57.117+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:45:57.117+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:45:57.876+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:45:57.865+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:45:57.876+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:45:57.901+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.789 seconds
+[2025-02-22T21:48:30.491+0000] {processor.py:156} INFO - Started process (PID=27) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:48:30.509+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:48:30.526+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:48:30.525+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:48:31.621+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:48:31.620+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:48:31.627+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:48:31.659+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 1.184 seconds
+[2025-02-22T21:49:01.742+0000] {processor.py:156} INFO - Started process (PID=29) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:49:01.744+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:49:01.745+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:49:01.745+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:49:02.564+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:49:02.563+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:49:02.565+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:49:02.582+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.843 seconds
+[2025-02-22T21:49:32.711+0000] {processor.py:156} INFO - Started process (PID=31) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:49:32.713+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:49:32.713+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:49:32.713+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:49:33.242+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:49:33.241+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:49:33.243+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:49:33.261+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.553 seconds
+[2025-02-22T21:50:03.378+0000] {processor.py:156} INFO - Started process (PID=33) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:50:03.380+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:50:03.381+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:50:03.380+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:50:03.873+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:50:03.871+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:50:03.874+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:50:03.901+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.527 seconds
+[2025-02-22T21:50:51.267+0000] {processor.py:156} INFO - Started process (PID=35) to work on /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:50:51.273+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2025-02-22T21:50:51.273+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:50:51.273+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2025-02-22T21:50:53.968+0000] {logging_mixin.py:149} INFO - [2025-02-22T21:50:53.960+0000] {dagbag.py:350} ERROR - Failed to import: /opt/airflow/dags/weather_dag.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/models/dagbag.py", line 346, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/opt/airflow/dags/weather_dag.py", line 7, in <module>
+    from weather_etl.utils import get_location_dict
+ModuleNotFoundError: No module named 'weather_etl.utils'
+[2025-02-22T21:50:53.969+0000] {processor.py:811} WARNING - No viable dags retrieved from /opt/airflow/dags/weather_dag.py
