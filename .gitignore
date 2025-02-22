@@ -1,0 +1,12 @@
+.env
+terraform_accessKeys.csv
+pgdata
+.terraform
+terraform.tfstate
+.terraform.lock.hcl
+logs
+__pycache__
+*.pyc
+*.pem
+
+

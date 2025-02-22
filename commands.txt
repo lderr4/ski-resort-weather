@@ -1,0 +1,42 @@
+ssh -i /PATH/TO/KEY.pem ec2-user@<IP-ADDRESS>
+
+sudo yum update -y
+
+sudo yum install git -y
+git clone https://github.com/lderr4/ski-resort-weather.git
+
+sudo yum install docker -y
+
+sudo yum install make -y
+
+sudo service docker start
+sudo chkconfig docker on
+
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+sudo usermod -aG docker ec2-user
+
+exit
+
+ssh -i /PATH/TO/KEY.pem ec2-user@<IP-ADDRESS>
+
+cd ski-resort-weather
+
+touch .env
+vim .env
+# add api keys
+
+
+chmod 600 .env
+
+# setup connection between rds and ec2
+
+sudo dnf install postgresql15 -y
+
+PGPASSWORD="password" psql -h <DATABASASE-ENDPOINT> -U postgres -d postgres -f /sql/init.sql
+
+
+make build-prod
+
+
