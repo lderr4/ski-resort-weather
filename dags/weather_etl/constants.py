@@ -1,4 +1,4 @@
-
+import os
 resorts = [
     ("Ikon", "Winter Park", (39.87652886804281, -105.76577005628859)),
     ("Ikon", "Copper Mountain", (39.49367530426312, -106.15941614917506)),
@@ -15,6 +15,14 @@ resorts = [
     ("Epic", "Whistler", (50.073500220248334, -122.95937601933981)),
     ("Ikon", "Charmonix", (45.96980068114292, 6.879032518531963))
 ]
+
+DB_CONFIG = {
+    "dbname": os.environ.get('DB_NAME'),
+    "user": os.environ.get('DB_USER'),
+    "password": os.environ.get('DB_PASSWORD'),
+    "host": os.environ.get('DB_HOST'),
+    "port": os.environ.get('DB_PORT'),
+}
 
 
 alerts_cols = {

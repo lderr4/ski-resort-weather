@@ -26,6 +26,11 @@ services:
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
       - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
       - AIRFLOW__WEBSERVER__RBAC=true
       - AIRFLOW__CORE__FERNET_KEY=fTQQOC7Z34lKtLimf73_tl7bqZ_bQ63gHRBoplSCVas=
       - AIRFLOW__WEBSERVER__AUTHENTICATE=true
@@ -58,11 +63,17 @@ services:
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
       - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
     command: bash -c "
       pip install --no-cache-dir -r /opt/airflow/requirements.txt &&
       airflow db upgrade &&
       airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com &&
       airflow scheduler"
+ 
 
   postgres-dev:
     image: postgres:13

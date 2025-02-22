@@ -1,8 +1,5 @@
 import requests
 import os
-import time
-
-
 
 def get_resort_weather_response_data(**kwargs):
     responses = []

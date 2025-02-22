@@ -1,5 +1,4 @@
 from weather_etl.constants import alerts_cols, daily_forecast_cols, current_weather_cols, hourly_forecast_cols
-import pandas as pd
 from typing import Dict, List
 
 def transform_current_weather(**kwargs):

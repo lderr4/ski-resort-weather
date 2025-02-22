@@ -2,6 +2,7 @@ import pandas as pd
 from datetime import datetime
 import psycopg2
 from psycopg2.extras import execute_values
+from weather_etl.constants import DB_CONFIG
 
 
 def export_current_weather(**kwargs):
@@ -109,8 +110,6 @@ def export_hourly_forecast(**kwargs):
     finally:
         cursor.close()
         conn.close()
-
-
 
 def export_daily_forecast(**kwargs):
 
@@ -231,11 +230,3 @@ def export_alerts(**kwargs):
     finally:
         cursor.close()
         conn.close()
-
-
-
-    
-    
-    
-    
-
