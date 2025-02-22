@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
@@ -36,8 +36,8 @@ services:
       - AIRFLOW__WEBSERVER__AUTHENTICATE=true
       - AIRFLOW__WEBSERVER__AUTH_BACKENDS=airflow.www.auth.backend.default
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
+      - dags:/opt/airflow/dags
+      - logs:/opt/airflow/logs
       - ./requirements.txt:/opt/airflow/requirements.txt
     ports:
       - "8080:8080"
@@ -54,8 +54,8 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
+      - dags:/opt/airflow/dags
+      - logs:/opt/airflow/logs
       - ./requirements.txt:/opt/airflow/requirements.txt
     env_file: 
       - .env
@@ -109,4 +109,11 @@ services:
       interval: 15s
       timeout: 5s
       retries: 5
+
+
+volumes:
+  pgdata:
+  dags:
+  logs:
+
 
