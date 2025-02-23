@@ -9,13 +9,7 @@ def export_current_weather(**kwargs):
 
     transformed_data = kwargs['ti'].xcom_pull(task_ids="transform_current_weather", key="current_weather_list")
     
-    DB_CONFIG = {
-        "dbname": "admin",
-        "user": "admin",
-        "password": "admin",
-        "host": "postgres-dev",
-        "port": "5432",  # Default is 5432
-    }
+ 
 
     df = pd.DataFrame(transformed_data)
     df["dt"] = df["dt"].apply(lambda x: datetime.fromtimestamp(x))
@@ -55,14 +49,6 @@ def export_current_weather(**kwargs):
 
 def export_hourly_forecast(**kwargs):
     transformed_data = kwargs['ti'].xcom_pull(task_ids="transform_hourly", key="hourly_forecast_list")
-    
-    DB_CONFIG = {
-        "dbname": "admin",
-        "user": "admin",
-        "password": "admin",
-        "host": "postgres-dev",
-        "port": "5432",  # Default is 5432
-    }
 
     df = pd.DataFrame(transformed_data)
     df["dt"] = df["dt"].apply(lambda x: datetime.fromtimestamp(x))
@@ -115,13 +101,7 @@ def export_daily_forecast(**kwargs):
 
     transformed_data = kwargs['ti'].xcom_pull(task_ids="transform_daily", key="daily_forecast_list")
     
-    DB_CONFIG = {
-        "dbname": "admin",
-        "user": "admin",
-        "password": "admin",
-        "host": "postgres-dev",
-        "port": "5432",  # Default is 5432
-    }
+ 
 
     df = pd.DataFrame(transformed_data)
     df["dt"] = df["dt"].apply(lambda x: datetime.fromtimestamp(x).date())
@@ -183,13 +163,7 @@ def export_daily_forecast(**kwargs):
 def export_alerts(**kwargs):
     transformed_data = kwargs['ti'].xcom_pull(task_ids="transform_alerts", key="alerts_list")
     
-    DB_CONFIG = {
-        "dbname": "admin",
-        "user": "admin",
-        "password": "admin",
-        "host": "postgres-dev",
-        "port": "5432",  # Default is 5432
-    }
+   
     if not len(transformed_data ):
         print("No Values to insert")
         return

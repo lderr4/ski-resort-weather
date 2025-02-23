@@ -1,5 +1,5 @@
 import psycopg2
-from constants import DB_CONFIG
+from weather_etl.constants import DB_CONFIG
 
 def get_location_dict(**kwargs):
     # change to .env var eventully

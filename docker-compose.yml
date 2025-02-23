@@ -4,13 +4,12 @@ services:
   postgres:
     image: postgres:13
     container_name: postgres
-    user: "${UID:-1000}:0"
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
@@ -20,7 +19,6 @@ services:
     user: "${UID:-1000}:0"
     depends_on:
       - postgres
-      - scheduler
     env_file: 
       - .env
     environment:
@@ -113,6 +111,9 @@ services:
       interval: 15s
       timeout: 5s
       retries: 5
+
+volumes:
+  pgdata:
 
 
 

@@ -4,6 +4,9 @@ up:
 build-dev:
 	docker-compose up --build -d
 
+build-backend:
+	docker-compose up webserver scheduler postgres
+
 down:
 	docker-compose down
 
