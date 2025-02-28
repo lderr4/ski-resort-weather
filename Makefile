@@ -1,17 +1,15 @@
 up:
 	docker-compose up -d
 
+build-prod:
+	docker-compose up postgres airflow metabase
+
 build-dev:
 	docker-compose up --build -d
-
-build-backend:
-	docker-compose up webserver scheduler postgres
 
 down:
 	docker-compose down
 
-build-prod:
-	docker-compose up --build webserver scheduler -d
 
 check-dev-db:
 	docker-compose exec -T postgres-dev psql -U admin -d admin -c "SELECT * FROM ski_weather.location;"

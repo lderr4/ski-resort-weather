@@ -1,6 +1,5 @@
 version: '3'
 services:
-  
   postgres:
     image: postgres:13
     container_name: postgres
@@ -13,16 +12,17 @@ services:
     ports:
       - "5432:5432"
 
-  webserver:
+
+  airflow:
     image: apache/airflow:2.6.0-python3.9
-    container_name: webserver
+    container_name: airflow
     user: "${UID:-1000}:0"
     depends_on:
       - postgres
     env_file: 
       - .env
-    environment:
-      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    environment:*
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor  # LocalExecutor for simple workloads
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
       - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
@@ -41,41 +41,18 @@ services:
       - ./requirements.txt:/opt/airflow/requirements.txt
     ports:
       - "8080:8080"
-    command: bash -c "pip install --no-cache-dir -r /opt/airflow/requirements.txt && airflow webserver"
-    healthcheck:
-      test: ['CMD-SHELL', "[ -f /opt/airflow/airflow-webserver.pid ]"]
-      interval: 30s
-      timeout: 30s
-      retries: 3
-
-  scheduler:
-    image: apache/airflow:2.6.0-python3.9
-    container_name: scheduler
-    user: "${UID:-1000}:0"
-    depends_on:
-      - postgres
-    volumes:
-      - ./dags:/opt/airflow/dags
-      - ./logs:/opt/airflow/logs
-      - ./requirements.txt:/opt/airflow/requirements.txt
-    env_file: 
-      - .env
-    environment:
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-      - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
-      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=${DB_PORT}
     command: bash -c "
       pip install --no-cache-dir -r /opt/airflow/requirements.txt &&
       airflow db init &&
       airflow db upgrade &&
       airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com &&
-      airflow scheduler"
- 
+      airflow webserver & airflow scheduler"
+
+    healthcheck:
+      test: ['CMD-SHELL', "[ -f /opt/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
 
   postgres-dev:
     image: postgres:13
@@ -102,10 +79,9 @@ services:
       MB_DB_USER: airflow
       MB_DB_PASS: airflow
       MB_DB_HOST: postgres
-
     depends_on:
       - postgres
-
+ 
     healthcheck:
       test: curl --fail -I http://localhost:3000/api/health || exit 1
       interval: 15s

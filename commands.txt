@@ -36,7 +36,8 @@ sudo dnf install postgresql15 -y
 
 PGPASSWORD="password" psql -h <DATABASASE-ENDPOINT> -U postgres -d postgres -f /sql/init.sql
 
-
 make build-prod
+
+
 
 
