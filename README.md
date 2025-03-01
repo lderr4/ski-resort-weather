@@ -78,45 +78,21 @@ sudo vim server_name.conf
 ```
 Paste the following into the file:
 ```
+
+listen 80;
+server_name my-url.com www.my-url.com;
+
 server {
     listen 80;
-    server_name my-url.com www.my-url.com;
-
-    # Redirect root URL to the dashboard
-    location = / {
-        return 301 /public/dashboard/<dashbord_id> 
-    }
-
-    # Proxy the specific Metabase dashboard
-    location /public/dashboard/ {
-        proxy_pass http://localhost:3000;
+    server_name ski-resort-weather.com www.ski-resort-weather.com;
+    location / {
+        proxy_pass http://localhost:3000/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Port 80;
-    }
-
-    # Proxy static assets required by the dashboard
-    location ~* \.(?:css|js|woff2?|eot|ttf|svg|png|jpg|jpeg|gif|ico)$ {
-        proxy_pass http://localhost:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        expires 6M;
-        access_log off;
-        add_header Cache-Control "public";
-    }
-
-    # Proxy API endpoints used by the dashboard
-    location /api/ {
-        proxy_pass http://localhost:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
 ```
