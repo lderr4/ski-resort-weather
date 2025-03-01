@@ -5,6 +5,8 @@ pgdata
 terraform.tfstate
 .terraform.lock.hcl
 logs
+dag_processor_manager
+scheduler
 __pycache__
 *.pyc
 *.pem
