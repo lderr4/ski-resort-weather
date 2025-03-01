@@ -61,6 +61,7 @@ DB_PASSWORD=
 DB_HOST=
 DB_PORT=
 ```
+3. Exit and reenter the ssh tunnel
 4. Run these final commands
 ```
 chmod 600 .env
