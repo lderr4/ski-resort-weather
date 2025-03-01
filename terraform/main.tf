@@ -42,9 +42,6 @@ resource "aws_db_instance" "rds" {
     tags                                  = {}
     tags_all                              = {}
     username                              = "postgres"
-    vpc_security_group_ids                = [
-        "sg-0b28b141d748ea0a3",
-    ]
 }
 
 resource "aws_instance" "ec2" {
@@ -66,10 +63,6 @@ resource "aws_instance" "ec2" {
     tags                                 = {
         "Name" = "ski-resort-weather"
     }
-    vpc_security_group_ids               = [
-        "sg-055d26924dd66b1b6",
-        "sg-0995a41c59e3f641c",
-    ]
 
     root_block_device {
         delete_on_termination = true
