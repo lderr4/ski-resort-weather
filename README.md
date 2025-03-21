@@ -1,7 +1,7 @@
 # Ski-Resort-Weather
 
 
-[Link to Application](http://ski-resort-weather.com)
+[Link to Application]([http://ski-resort-weather.com](http://ski-resort-weather.com/public/dashboard/6f9e1bf5-a3ac-4764-b298-69a6ecd642bc))
 
 A fully deployed dashboard in AWS that gives live weather updates for ski resorts.
 
